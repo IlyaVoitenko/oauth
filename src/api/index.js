@@ -1,11 +1,17 @@
 import axios from "axios";
-const { REACT_APP_SERVER } = process.env;
 
-const baseURL = axios.create({ baseURL: REACT_APP_SERVER });
+const instance = axios.create({ baseURL: process.env.REACT_APP_SERVER });
+
+const setToken = (token) => {
+  if (token) {
+    return (instance.defaults.headers.authorization = `Bearer ${token}`);
+  }
+  instance.defaults.headers.authorization = "";
+};
 
 export const callApi = async () => {
   try {
-    const { data } = await baseURL.get();
+    const { data } = await instance.get("/");
     return data;
   } catch (error) {
     console.warn(error);
@@ -14,8 +20,10 @@ export const callApi = async () => {
 export const callProtectedApi = async (getAccessToken) => {
   try {
     const token = await getAccessToken();
-    console.log("token :", token);
-    return token;
+    console.log(token);
+    setToken(token);
+    const { data } = await instance.get("/protected");
+    return data;
   } catch (error) {
     console.log(error);
   }
