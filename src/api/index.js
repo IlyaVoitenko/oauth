@@ -12,14 +12,11 @@ export const callApi = async () => {
   }
 };
 export const callProtectedApi = async (getAccessToken) => {
-  const token = await getAccessToken();
-  console.log("token :", token);
-  return token;
-  // try {
-  //   const { data } = await baseURL.get(`/protected`);
-  //   console.log(data);
-  //   return data;
-  // } catch (error) {
-  //   console.warn(error);
-  // }
+  try {
+    const token = await getAccessToken();
+    console.log("token :", token);
+    return token;
+  } catch (error) {
+    console.log(error);
+  }
 };
