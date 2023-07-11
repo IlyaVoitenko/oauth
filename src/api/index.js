@@ -20,9 +20,9 @@ export const callApi = async () => {
 export const callProtectedApi = async (getAccessToken) => {
   try {
     const token = await getAccessToken();
-    console.log(token);
-    setToken(token);
-    const { data } = await instance.get("/protected");
+    const { data } = await instance.get("/protected", {
+      headers: { authorization: `Bearer ${token}` },
+    });
     return data;
   } catch (error) {
     console.log(error);
