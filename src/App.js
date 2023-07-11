@@ -1,6 +1,5 @@
 import "./App.css";
 import { useAuth0 } from "@auth0/auth0-react";
-// import { callApi, callProtectedApi } from "./api";
 import Login from "./Login";
 import Logout from "./Logout";
 import Profile from "./Profile";

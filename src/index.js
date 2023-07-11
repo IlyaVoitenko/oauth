@@ -9,6 +9,7 @@ const {
   REACT_APP_AUDIENCE,
   REACT_APP_SCOPE,
 } = process.env;
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
