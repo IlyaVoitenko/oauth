@@ -16,8 +16,8 @@ root.render(
     <Auth0Provider
       domain={REACT_APP_DOMAIN}
       clientId={REACT_APP_CLIENT_ID}
-      audience={REACT_APP_AUDIENCE}
-      scope={REACT_APP_SCOPE}
+      // audience={REACT_APP_AUDIENCE}
+      // scope={REACT_APP_SCOPE}
       authorizationParams={{
         redirect_uri: window.location.origin,
       }}
