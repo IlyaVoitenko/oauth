@@ -1,15 +1,22 @@
 import "./App.css";
-import { useAuth0 } from "@auth0/auth0-react";
-import Login from "./Login";
-import Logout from "./Logout";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ProtectedRoutes from "./utils/ProtectedRoutes";
 import Profile from "./Profile";
-function App() {
-  const { isAuthenticated } = useAuth0();
+import NotFound from "./Components/NotFound";
+import Auth from "./Auth";
 
+function App() {
   return (
     <div className="App">
-      {!isAuthenticated ? <Login /> : <Logout />}
-      {isAuthenticated && <Profile />}
+      <BrowserRouter>
+        <Routes>
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/profile" element={<Profile />} />
+          </Route>
+          <Route path="/" element={<Auth />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
